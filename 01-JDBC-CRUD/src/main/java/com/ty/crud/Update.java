@@ -2,8 +2,8 @@ package com.ty.crud;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Update {
 
@@ -19,11 +19,13 @@ public class Update {
 
 			Connection con = DriverManager.getConnection(url, user, password);
 
-			Statement stm = con.createStatement();
+			String query = "UPDATE student SET phone=? WHERE sid=?";
 
-			String query = "UPDATE student SET phone=1234567890 WHERE sid=101";
+			PreparedStatement pstm = con.prepareStatement(query);
+			pstm.setInt(2, 105);
+			pstm.setLong(1, 9876543210L);
 
-			System.out.println(stm.execute(query));
+			pstm.execute();
 
 			con.close();
 

@@ -1,0 +1,42 @@
+package com.ty.crud;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Call {
+
+	public static void main(String[] args) {
+
+		String driver = "org.postgresql.Driver";
+		String url = "jdbc:postgresql://localhost:5432/demo";
+		String user = "postgres";
+		String password = "root";
+
+		try {
+			Class.forName(driver);
+
+			Connection con = DriverManager.getConnection(url, user, password);
+
+			String query = "call procedure_Name(?,?,?..............)";
+
+			CallableStatement cstm = con.prepareCall(query);
+			cstm.setInt(1, 101);
+			cstm.setString(2, "dhfasjk");
+			cstm.setString(3, "fhdusai");
+
+			cstm.execute();
+
+			con.close();
+
+			System.out.println("record updated");
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

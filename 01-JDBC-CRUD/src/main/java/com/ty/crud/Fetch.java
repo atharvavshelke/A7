@@ -10,14 +10,12 @@ public class Fetch {
 
 	public static void main(String[] args) {
 		String driver = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost:5432/demo";
-		String user = "postgres";
-		String password = "root";
+		String url = "jdbc:postgresql://localhost:5432/demo?user=postgres&password=root";
 
 		try {
 			Class.forName(driver);
 
-			Connection con = DriverManager.getConnection(url, user, password);
+			Connection con = DriverManager.getConnection(url);
 
 			Statement stm = con.createStatement();
 
@@ -28,15 +26,10 @@ public class Fetch {
 			System.out.println("-----Students-----");
 
 			while (rs.next()) {
-				int sid = rs.getInt("sid");
-				String name = rs.getString(2);
-				String email = rs.getString(3);
-				long phone = rs.getLong(4);
-
-				System.out.println("Sid : " + sid);
-				System.out.println("Name : " + name);
-				System.out.println("Email : " + email);
-				System.out.println("Phone : " + phone);
+				System.out.println("Sid : " + rs.getInt("sid"));
+				System.out.println("Name : " + rs.getString(2));
+				System.out.println("Email : " + rs.getString(3));
+				System.out.println("Phone : " + rs.getLong(4));
 				System.out.println("-------------");
 			}
 
