@@ -3,3 +3,5 @@
 1775473223693	Extract local variable 'cstm'
 1775559340187	Extract local variable 'res'
 1775559465614	Extract local variable 'res'
+1775642194604	Copy compilation unit
+1775642351787	Extract local variable 'stm'
